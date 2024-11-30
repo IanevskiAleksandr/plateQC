@@ -95,13 +95,9 @@ Contributions are welcome! Please feel free to submit pull requests or create is
 
 If you use this package in your research, please cite:
 ```
-Ianevski, A. (2024). plateQC: High-throughput screening plate quality control with NRFE analysis.
+Will be added later
 GitHub repository: https://github.com/IanevskiAleksandr/plateQC
 ```
-
-## Author
-
-Aleksandr Ianevski (aleksandr.ianevski@helsinki.fi)
 
 ## License
 
