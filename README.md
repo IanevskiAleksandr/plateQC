@@ -65,7 +65,7 @@ The input data frame should contain the following columns:
 - `DRUG_NAME`: Name of the drug or control (use "<b>POS_CTRL</b>" and "<b>NEG_CTRL</b>" for positive and negative controls, respectively). A negative control would mean that it will not have any impact on the cells while positive control is the treatment which will have maximum response. DMSO is a classical example of a negative control (that does not affect cell viability). A toxic compound like Benzethonium chloride(BzCl) which is a potent proteosome inhibitor and kills all the cells in the well is used as a positive control. 
 - `CONC`: Drug concentration in nM
 - `INTENSITY`: Measured response intensity
-- `WELL`: Well position identifier (e.g., "A1", "B2")
+- `WELL`: Well position identifier (e.g., "A1", "B2"). Optional column for the core analysis; Required only for generating plate visualizations. If not provided, make sure to run without visualization `process_plate_data(plate_data, plot_dose_response = FALSE, plot_plate_summary = FALSE)`
 
 ### Quality Metrics
 
