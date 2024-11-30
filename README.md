@@ -1,14 +1,9 @@
-# plateQC
-
-High-throughput screening plate quality control with NRFE (Normalized Residual Fit Error) analysis and visualization tools.
-
 ## Description
-
-`plateQC` is a comprehensive R package designed for analyzing high-throughput screening (HTS) plate data. It provides robust quality control metrics and visualization tools, with a particular focus on the Normalized Residual Fit Error (NRFE) metric for evaluating dose-response curve quality.
+`plateQC` is a comprehensive R package designed to calculate plate quality control metrics for high-throughput experiments. It includes a novel metric called NRFE (Normalized Residual Fit Error) that is based on dose-response data, rather than relying solely on controls (such as DMSO). The package also computes other common metrics like Z-factor, SSMD, and signal-to-background ratio, which are typically calculated using control data.
 
 ### Key Features:
-- Advanced quality control metrics calculation (NRFE, Z-factor, SSMD)
-- Automated dose-response curve fitting
+- Example data included in the package
+- Advanced quality control metrics calculation (NRFE, Z-factor, SSMD, signal-to-background ratio)
 - Interactive plate visualizations including:
   - Inhibition heatmaps
   - Residual error heatmaps
@@ -18,7 +13,7 @@ High-throughput screening plate quality control with NRFE (Normalized Residual F
 
 ## Installation
 
-You can install the development version from GitHub:
+You can install the package from GitHub:
 
 ```r
 # Install devtools if not already installed
@@ -67,7 +62,7 @@ meta_info <- results$metadata
 
 The input data frame should contain the following columns:
 - `BARCODE`: Unique identifier for each plate
-- `DRUG_NAME`: Name of the drug or control (use "POS_CTRL" and "NEG_CTRL" for controls)
+- `DRUG_NAME`: Name of the drug or control (use "POS_CTRL" and "NEG_CTRL" for positive and negative controls, respectively). A negative control would mean that it will not have any impact on the cells while positive control is the treatment which will have maximum response. DMSO, which is frequently used as a negative control does not interfere or inhibit cell cycles and is used as a vehicle/solvent for many compounds. Since DMSO does not affect cell viability, the wells with DMSO treatment are always consistent. A toxic compound like Benzethonium chloride(BzCl) which is a potent proteosome inhibitor and kills all the cells in the well is used as a positive control. 
 - `CONC`: Drug concentration in nM
 - `INTENSITY`: Measured response intensity
 - `WELL`: Well position identifier (e.g., "A1", "B2")
@@ -75,7 +70,7 @@ The input data frame should contain the following columns:
 ### Quality Metrics
 
 The package calculates several quality metrics:
-- **NRFE**: Normalized Residual Fit Error for evaluating dose-response curve quality
+- **NRFE**: Normalized Residual Fit Error calculated based on normalized dose-response curve fitting residuals
 - **Z-factor**: Classical plate quality metric based on controls
 - **SSMD**: Strictly Standardized Mean Difference
 - **Robust Z-prime**: Robust version of Z-factor using median and MAD
@@ -84,9 +79,10 @@ The package calculates several quality metrics:
 ## Visualization Examples
 
 The package generates three types of visualizations:
-1. Dose-response curve plots for each compound
-2. Plate heatmaps showing inhibition patterns
-3. Residual error heatmaps highlighting problematic areas
+1. Plate heatmaps showing inhibition patterns
+2. Residual error heatmaps highlighting problematic areas
+3. Scatter plots showing inhibition patterns
+4. Dose-response curve plots for each compound
 
 ## Contributing
 
