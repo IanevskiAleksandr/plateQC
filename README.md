@@ -81,7 +81,7 @@ The package calculates several quality metrics:
 
 ## Visualization Examples
 
-The package generates three types of visualizations:
+The package generates four types of visualizations:
 1. Plate heatmaps showing inhibition patterns
 2. Residual error heatmaps highlighting problematic areas
 3. Scatter plots showing inhibition patterns
