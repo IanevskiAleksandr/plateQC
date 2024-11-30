@@ -62,7 +62,7 @@ meta_info <- results$metadata
 
 The input data frame should contain the following columns:
 - `BARCODE`: Unique identifier for each plate
-- `DRUG_NAME`: Name of the drug or control (use "POS_CTRL" and "NEG_CTRL" for positive and negative controls, respectively). A negative control would mean that it will not have any impact on the cells while positive control is the treatment which will have maximum response. DMSO, which is frequently used as a negative control does not interfere or inhibit cell cycles and is used as a vehicle/solvent for many compounds. Since DMSO does not affect cell viability, the wells with DMSO treatment are always consistent. A toxic compound like Benzethonium chloride(BzCl) which is a potent proteosome inhibitor and kills all the cells in the well is used as a positive control. 
+- `DRUG_NAME`: Name of the drug or control (use "<b>POS_CTRL</b>" and "<b>NEG_CTRL</b>" for positive and negative controls, respectively). A negative control would mean that it will not have any impact on the cells while positive control is the treatment which will have maximum response. DMSO is a classical example of a negative control (that does not affect cell viability). A toxic compound like Benzethonium chloride(BzCl) which is a potent proteosome inhibitor and kills all the cells in the well is used as a positive control. 
 - `CONC`: Drug concentration in nM
 - `INTENSITY`: Measured response intensity
 - `WELL`: Well position identifier (e.g., "A1", "B2")
