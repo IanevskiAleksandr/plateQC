@@ -30,6 +30,9 @@ devtools::install_github("IanevskiAleksandr/plateQC")
 ```r
 library(plateQC)
 
+# View example data
+head(plate_data) 
+
 # Process plate data with default settings
 results <- process_plate_data(plate_data)
 
