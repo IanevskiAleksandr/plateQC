@@ -1,0 +1,29 @@
+Package: plateQC
+Title: High-Throughput Screening Plate Quality Control with NRFE Analysis
+Version: 0.1.0
+Authors@R: 
+    person("Aleksandr", "Ianevski", , "aleksandr.ianevski@helsinki.fi", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7780-482X"))
+Description: A comprehensive tool for analyzing high-throughput screening plate data 
+    with advanced quality control metrics, including the Normalized Residual Fit Error 
+    (NRFE). The package provides functions for processing plate data, fitting 
+    dose-response curves, and calculating various quality control metrics including 
+    Z-factor, SSMD, and NRFE.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    ggplot2,
+    gridExtra,
+    parallel,
+    drc,
+    minpack.lm,
+    caTools,
+    stats,
+    utils
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
