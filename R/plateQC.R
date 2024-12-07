@@ -761,11 +761,24 @@ process_plate_data <- function(plate_data,
     stop("Input must be a data frame", call. = FALSE)
   }
   
-  required_cols <- c("BARCODE", "DRUG_NAME", "WELL", "CONC", "INTENSITY")
+  # Define required columns without INTENSITY
+  base_required_cols <- c("BARCODE", "DRUG_NAME", "WELL", "CONC")
+  
+  # Handle missing WELL column
   if (!"WELL" %in% colnames(plate_data)) {
     plate_data$WELL <- rep("A1", nrow(plate_data))
   }
-  missing_cols <- setdiff(required_cols, colnames(plate_data))
+  
+  # Check if either INTENSITY or inhibition_percent is present
+  has_intensity <- "INTENSITY" %in% colnames(plate_data)
+  has_inhibition <- "inhibition_percent" %in% colnames(plate_data)
+  
+  if (!has_intensity && !has_inhibition) {
+    stop("Either INTENSITY or inhibition_percent column must be present", call. = FALSE)
+  }
+  
+  # Check other required columns
+  missing_cols <- setdiff(base_required_cols, colnames(plate_data))
   if (length(missing_cols) > 0) {
     stop(
       sprintf("Missing required columns: %s", paste(missing_cols, collapse = ", ")),
