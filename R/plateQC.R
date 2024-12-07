@@ -96,6 +96,46 @@ process_plate <- function(plate_data) {
   # Get plate metadata
   plate_id <- unique(plate_data$BARCODE)[1]
   
+  # Check if inhibition_percent already exists
+  if ("inhibition_percent" %in% names(plate_data)) {
+    # Process plate data without recalculating inhibition
+    plate_data <- plate_data %>% 
+      mutate(
+        Row = gsub("([A-Z]+).*", "\\1", WELL),
+        Column = as.numeric(gsub("[A-Z]+", "", WELL))
+      )
+    
+    # Create complete grid
+    complete_wells <- expand.grid(
+      Row = unique(plate_data$Row),
+      Column = 1:max(plate_data$Column, na.rm = TRUE)
+    ) %>%
+      mutate(WELL = paste0(Row, Column))
+    
+    # Final processing
+    processed_data <- complete_wells %>%
+      left_join(plate_data, by = c("Row", "Column", "WELL")) %>%
+      arrange(Row, Column) %>%
+      mutate(
+        Column = as.numeric(as.character(Column)),
+        Row = factor(Row, levels = unique(Row))
+      )
+    
+    # Set all quality metrics to NA
+    quality_metrics <- list(
+      zfactor = NA,
+      ssmd = NA,
+      robust_z_prime = NA,
+      signal_vs_bg = NA
+    )
+    
+    return(list(
+      processed_data = processed_data,
+      quality_metrics = quality_metrics
+    ))
+  }
+  
+  # If inhibition_percent doesn't exist, continue with original processing
   # Validate controls
   controls <- list(
     POS = plate_data$INTENSITY[plate_data$DRUG_NAME == "POS_CTRL"],
