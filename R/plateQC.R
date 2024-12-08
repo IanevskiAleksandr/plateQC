@@ -181,7 +181,7 @@ process_plate <- function(plate_data) {
     # Process plate data
     plate_data <- plate_data %>% 
       mutate(
-        inhibition_percent = pmax(0, pmin(100, inhibition_percent)),
+        #inhibition_percent = pmax(0, pmin(100, inhibition_percent)),
         Row = gsub("([A-Z]+).*", "\\1", WELL),
         Column = as.numeric(gsub("[A-Z]+", "", WELL))
       )
