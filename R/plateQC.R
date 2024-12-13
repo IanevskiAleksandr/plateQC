@@ -85,9 +85,10 @@ create_plate_labels <- function(n) {
 
 #' Process plate data
 #' @param plate_data Data frame containing plate data
+#' @param crop_to_0_100 crop inhibition responses to 0-100 range
 #' @return List containing processed data and quality metrics
 #' @export
-process_plate <- function(plate_data) {
+process_plate <- function(plate_data, crop_to_0_100 = TRUE) {
   # Input validation
   if (!is.data.frame(plate_data) || nrow(plate_data) == 0) {
     stop("Invalid plate data provided")
@@ -179,12 +180,14 @@ process_plate <- function(plate_data) {
                                         (avg_high - avg_low)) * 100
     
     # Process plate data
-    plate_data <- plate_data %>% 
-      mutate(
-        #inhibition_percent = pmax(0, pmin(100, inhibition_percent)),
-        Row = gsub("([A-Z]+).*", "\\1", WELL),
-        Column = as.numeric(gsub("[A-Z]+", "", WELL))
-      )
+   plate_data <- plate_data %>% 
+    mutate(
+      Row = gsub("([A-Z]+).*", "\\1", WELL),
+      Column = as.numeric(gsub("[A-Z]+", "", WELL)),
+      inhibition_percent = if(crop_to_0_100) 
+        pmax(0, pmin(100, inhibition_percent)) 
+        else inhibition_percent
+    )
     
     # Create complete grid
     complete_wells <- expand.grid(
@@ -692,6 +695,7 @@ create_combined_plot <- function(plate_data, plate_data_raw, file_path) {
 #' @param verbose Logical. If TRUE, prints processing status messages. Default is FALSE.
 #' @param cores_n Integer. Number of cores to use for parallel processing of dose-response
 #'   curves. Default is 1.
+#' @param crop_to_0_100 Logical. Crop inhibition responses to 0-100 range
 #'
 #' @return Returns an object of class "plate_analysis" containing:
 #'   \itemize{
@@ -754,7 +758,8 @@ process_plate_data <- function(plate_data,
                                plot_plate_summary = FALSE,
                                remove_empty_wells = TRUE, 
                                verbose = FALSE,
-                               cores_n = 1) {
+                               cores_n = 1,
+                               crop_to_0_100 = TRUE) {
   
   # Input validation
   if (!is.data.frame(plate_data)) {
@@ -833,7 +838,7 @@ process_plate_data <- function(plate_data,
       }
       
       if (verbose) message("  Processing controls...")
-      processed_results <- process_plate(current_plate)
+      processed_results <- process_plate(current_plate, crop_to_0_100)
       if (is.null(processed_results)) {
         if (verbose) message(" Failed")
         next
