@@ -161,22 +161,6 @@ print(classified_results[, c("barcode", "zfactor", "NRFE", "quality_category", "
 # 3     101416    0.58 26.530984   Spatial_Artifacts Exclude - systematic errors
 ```
 
-### Step 4: Real-World Example with Included Data
-
-Run the example data to see NRFE in action:
-
-```r
-# Process the included example data
-results <- process_plate_data(plate_data)
-plate_stats <- results$plate_statistics
-print(plate_stats)
-
-#   zfactor ssmd robust_z_prime signal_vs_bg    barcode      NRFE
-# 1   -1.28    1          -1.39         62.5 PSCREEN_M2 23.989170
-# 2    0.88   25           0.89         46.4     115858  4.999876
-# 3    0.58    7           0.57         35.4     101416 26.530984
-```
-
 **Analysis of the three example plates:**
 
 **Plate 115858** - Excellent Quality:
