@@ -92,11 +92,11 @@ processed_data <- results$detailed_results
 meta_info <- results$metadata
 ```
 
-<br><hr><br>
+<hr><br> <span id="wor"></span>
 
-## Quality Control Workflow
+## Quality control workflow
 
-### Step 1: Calculate Quality Metrics
+### Step 1: Calculate quality metrics
 
 ```r
 library(plateQC)
@@ -114,9 +114,9 @@ quality_metrics <- results$plate_statistics
 print(quality_metrics)
 ```
 
-### Step 2: Interpret Quality Metrics
+### Step 2: Interpret quality metrics
 
-#### Traditional Control-Based Metrics:
+#### Traditional control-based metrics:
 - **Z-factor**: >0.5 (excellent), 0.3-0.5 (acceptable), <0.3 (poor)
 - **SSMD**: >3 (excellent), 2-3 (good), 1-2 (acceptable), <1 (poor)  
 - **S/B ratio**: >10 (excellent), 5-10 (good), 2-5 (acceptable), <2 (poor)
@@ -126,7 +126,7 @@ print(quality_metrics)
 - **10-15**: Borderline - requires review
 - **>15**: Poor spatial quality - likely systematic artifacts
 
-### Step 3: Quality Decision Framework
+### Step 3: Quality decision framework
 
 ```r
 # Classify plate quality
@@ -206,7 +206,7 @@ print(classified_results[, c("barcode", "zfactor", "NRFE", "quality_category", "
   <p><em><strong>Figure:</strong> Plate 101416 spatial artifact detection. Top: Original plate layout showing inhibition patterns with controls (* = positive control, x = negative control). Bottom: NRFE-detected spatial errors showing systematic artifacts in the right portion of the plate that traditional control-based metrics failed to identify.</em></p>
 </div>
 
-### Step 4: Quality Assessment Summary
+### Step 4: Quality assessment summary
 
 ```r
 # Create quality summary for example data
@@ -248,7 +248,7 @@ nrow(exclude_plates), 100*nrow(exclude_plates)/nrow(classified_results)))
 # - Recommend exclusion: 2 plates (66.7%)
 ```
 
-## Visualization Examples
+## Visualization examples
 
 The package generates four types of visualizations:
 1. Plate heatmaps showing inhibition patterns
@@ -256,7 +256,7 @@ The package generates four types of visualizations:
 3. Scatter plots showing inhibition patterns
 4. Dose-response curve plots for each compound
 
-## Key Advantages of NRFE
+## Key advantages of NRFE
 
 1. **Detects spatial artifacts** missed by control-based metrics
 2. **Uses actual compound data** rather than just control wells  
@@ -264,7 +264,7 @@ The package generates four types of visualizations:
 4. **Complements traditional metrics** for comprehensive quality assessment
 5. **Improves cross-study reproducibility** by filtering problematic plates
 
-## Best Practices
+## Best practices
 
 1. **Always combine metrics**: Use NRFE alongside traditional control-based metrics
 2. **Visual inspection**: Review borderline plates manually before final decisions
