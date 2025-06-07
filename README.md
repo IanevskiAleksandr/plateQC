@@ -17,6 +17,22 @@
 - Robust outlier detection and handling
 - **Comprehensive quality control workflow** with decision frameworks
 
+## Quality Metrics
+
+The package calculates several quality metrics:
+- **NRFE**: Normalized Residual Fit Error calculated based on normalized dose-response curve fitting residuals
+- **Z-factor**: Classical plate quality metric based on controls
+- **SSMD**: Strictly Standardized Mean Difference
+- **Robust Z-prime**: Robust version of Z-factor using median and MAD
+- **Signal vs Background**: Ratio between positive and negative controls
+
+| Metric | Calculation | Interpretation |
+|--------|-------------|----------------|
+| **Z-factor** | `1 - (3σ_pos + 3σ_neg)/|μ_pos - μ_neg|` | >0.5: excellent, 0.3-0.5: acceptable |
+| **SSMD** | `(μ_neg - μ_pos)/√(σ²_neg + σ²_pos)` | >2: good separation |
+| **S/B** | `μ_neg/μ_pos` | >5: adequate dynamic range |
+| **NRFE** | Mean normalized residuals from dose-response fits | <10: good spatial quality |
+
 ## Installation
 
 You can install the package from GitHub:
@@ -224,22 +240,6 @@ nrow(exclude_plates), 100*nrow(exclude_plates)/nrow(classified_results)))
 # - Excellent/Good quality: 1 plates (33.3%)
 # - Recommend exclusion: 2 plates (66.7%)
 ```
-
-## Quality Metrics
-
-The package calculates several quality metrics:
-- **NRFE**: Normalized Residual Fit Error calculated based on normalized dose-response curve fitting residuals
-- **Z-factor**: Classical plate quality metric based on controls
-- **SSMD**: Strictly Standardized Mean Difference
-- **Robust Z-prime**: Robust version of Z-factor using median and MAD
-- **Signal vs Background**: Ratio between positive and negative controls
-
-| Metric | Calculation | Interpretation |
-|--------|-------------|----------------|
-| **Z-factor** | `1 - (3σ_pos + 3σ_neg)/|μ_pos - μ_neg|` | >0.5: excellent, 0.3-0.5: acceptable |
-| **SSMD** | `(μ_neg - μ_pos)/√(σ²_neg + σ²_pos)` | >2: good separation |
-| **S/B** | `μ_neg/μ_pos` | >5: adequate dynamic range |
-| **NRFE** | Mean normalized residuals from dose-response fits | <10: good spatial quality |
 
 ## Visualization Examples
 
