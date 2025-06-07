@@ -92,7 +92,8 @@ processed_data <- results$detailed_results
 meta_info <- results$metadata
 ```
 
-<hr>
+<br><hr><br>
+
 ## Quality Control Workflow
 
 ### Step 1: Calculate Quality Metrics
