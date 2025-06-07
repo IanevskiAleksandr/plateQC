@@ -183,7 +183,7 @@ print(classified_results[, c("barcode", "zfactor", "NRFE", "quality_category", "
 
 **Key Insight:** Plate 101416 demonstrates NRFE's unique value - traditional metrics suggest acceptable quality, but NRFE correctly identifies systematic spatial artifacts that would compromise dose-response measurements.
 
-### Step 5: Quality Assessment Summary
+### Step 4: Quality Assessment Summary
 
 ```r
 # Create quality summary for example data
