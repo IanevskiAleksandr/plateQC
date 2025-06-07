@@ -92,7 +92,7 @@ processed_data <- results$detailed_results
 meta_info <- results$metadata
 ```
 
-<hr><br> <span id="wor"></span>
+<hr><br> <span id="workflow"></span>
 
 ## Quality control workflow
 
