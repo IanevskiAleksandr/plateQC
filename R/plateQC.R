@@ -301,7 +301,7 @@ create_plate_heatmap <- function(plate_data, data_type) {
       coord_fixed() +
       labs(
         title = sprintf("Cropped Plate Error Heatmap", max_row, max_col),
-        subtitle = "Plate layout with controls",
+        subtitle = "Plate layout without controls",
         x = "Column",
         y = "Row"
       ) +
