@@ -597,15 +597,15 @@ calculate_all <- function(dose, inhibition_percent, dataset, drug_name, WELL = W
       geom_point(size = 2.8) +
       geom_line(data = data.frame(x = x, y = yic), aes(x, yic),
                 color = "steelblue", size = 0.8) +
-      geom_vline(xintercept = log10(coef_ic50["IC50"]), colour = "grey", size = 0.8) +
+      #geom_vline(xintercept = log10(coef_ic50["IC50"]), colour = "grey", size = 0.8) +
       ggtitle(paste0(strtrim(drug_name, 15), " (SE:", as.numeric(ic50std_resid), ")\n")) +
       theme_bw() +
       labs(y = "% inhibition", x = "conc(nM)") +
       ylim(-25, 125) +
-      geom_text(mapping = aes(x2, y2, label = text2),
-                data = data.frame(x2 = log10(coef_ic50["IC50"]) * 0.95,
-                                  y2 = 115, text2 = "IC50"),
-                color = "grey", parse = TRUE) +
+      #geom_text(mapping = aes(x2, y2, label = text2),
+      #          data = data.frame(x2 = log10(coef_ic50["IC50"]) * 0.95,
+      #                            y2 = 115, text2 = "IC50"),
+      #          color = "grey", parse = TRUE) +
       theme(plot.background = element_rect(fill = "transparent", colour = NA),
             panel.background = element_rect(fill = "transparent", colour = NA),
             plot.title = element_text(hjust = 0.5, size = 12.5))
