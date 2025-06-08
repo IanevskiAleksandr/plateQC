@@ -351,7 +351,9 @@ create_row_scatter <- function(plate_data) {
     scale_color_manual(
       values = c("POS_CTRL" = "#1B9E77", "NEG_CTRL" = "#D95F02", "TEST" = "#7570B3"),
       name = "Compound Type",
-      labels = c("Positive Control", "Negative Control", "Test Compounds")
+      labels = c("POS_CTRL" = "Positive Control", 
+             "NEG_CTRL" = "Negative Control", 
+             "TEST" = "Test Compounds")
     ) +
     scale_x_continuous(
       limits = c(0, 100),
